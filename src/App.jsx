@@ -7,7 +7,6 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import OrderPage from './pages/OrderPage'
 import NotFoundPage from './pages/NotFoundPage'
-
 function App() {
 
   return (
