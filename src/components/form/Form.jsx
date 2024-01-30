@@ -2,14 +2,15 @@ import React from 'react'
 import styles from './Form.module.scss'
 import { useForm } from 'react-hook-form';
 
-const Form = ({title}) => {
+const Form = ({title , getUserData, firebaseError}) => {
 
   const { register, handleSubmit , formState : {errors} , reset} = useForm({
     mode : 'onChange'
   });
 
-  const onSubmit = ({email , password}) => {
-      console.log(email, password)
+  const onSubmit = async ({email , password}) => {
+    getUserData(email, password);
+    reset();
   }
 
   const userEmail = {
@@ -26,10 +27,10 @@ const Form = ({title}) => {
       value: 10,
       message: '비밀번호는 최소 10자 이상이어야 합니다.',
     },
-    pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/,
-      message: '영어 대문자, 소문자, 숫자, 특수문자 중 2종류 문자 조합이어야 합니다.',
-    }
+    // pattern: {
+    //   value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9!@#$%^&*()-_=+\\|[\]{};:'",.<>/?]).{10,}$/,
+    //   message: '영어 대문자, 소문자, 숫자, 특수문자 중 2종류 문자 조합이어야 합니다.',
+    // }
   };
 
 
@@ -64,7 +65,11 @@ const Form = ({title}) => {
         }
       </div>
       <button type='submit'>{title}</button>
-      <span className={styles.form_error}></span>
+      {firebaseError && (
+      <span className={styles.form_error}>
+        {firebaseError}
+      </span>
+      )}
     </form>
   )
 }

@@ -10,7 +10,8 @@ const firebaseConfig = {
   projectId: "react-study2023",
   storageBucket: "react-study2023.appspot.com",
   messagingSenderId: "199609043125",
-  appId: "1:199609043125:web:6e92e41a1042bf6a8516fc"
+  appId: "1:199609043125:web:6e92e41a1042bf6a8516fc",
+  databaseURL: "https://react-study2023-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
